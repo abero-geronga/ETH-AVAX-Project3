@@ -45,8 +45,13 @@ contract Fauna is ERC20 {
         _burn(from, value);
     }
 
-}
+    function transfer(address receiver, uint256 amount) public override returns (bool) {
+    require(receiver != address(0), "Receiver address cannot be the zero address");
+    _transfer(msg.sender, receiver, amount);
+    return true;
+    }
 
+}
 ```
 
 To compile the code, click on the `Solidity Compiler` tab in the left-hand sidebar. Make sure the `Compiler` option is set to a compatible version (e.g., 0.8.0 or later), and then click on the `Fauna.sol` button.
